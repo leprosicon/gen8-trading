@@ -1,0 +1,932 @@
+/* Fonts */
+@font-face {
+    font-family:'Open Sans';
+    font-style:normal;
+    font-weight:400;
+    font-display:swap;
+    src:local('Open Sans Regular'),local('OpenSans-Regular'),url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFVZ0b.woff2) format('woff2');
+    unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD
+}
+@font-face {
+    font-family:'Open Sans';
+    font-style:normal;
+    font-weight:700;
+    font-display:swap;
+    src:local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UN7rgOUuhp.woff2) format('woff2');
+    unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD
+}
+/* General */
+body{
+    background:#f0f0f0;
+    background: linear-gradient(45deg, rgba(254,254,254,1) 0%, rgba(246,240,252,1) 50%, rgba(235,250,255,1) 100%);
+    font:16px/1.5 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    overflow-y:scroll
+}
+body,a,a:hover,a:focus,caption{
+    color:#333
+}
+a{
+    text-decoration:none
+}
+a:hover,a:focus{
+    text-decoration:underline
+}
+abbr[title] {
+    border-bottom: none;
+	text-decoration: none;
+}
+
+.hidden{
+    display:none !important
+}
+
+article {
+    padding: 1.25em;
+    margin: 1em auto;
+    width:87em;
+}
+header, table {
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.25);
+}
+/* Header */
+header {
+    background: #de3441;
+    background: linear-gradient(110deg, rgb(222, 52, 65) 90%, rgb(191, 39, 51) 90%);
+    color:#fefefe;
+    position: relative;
+    padding: 0.5em;
+    height: 5em;
+    margin: 0 0 2em;
+}
+h1 {
+    display: inline-block;
+    font-size:1.5em;
+    line-height: 2;
+    margin: 0;
+    padding: 0 0 0 1em;
+    vertical-align: middle;
+    width: 70%;
+}
+h1 a {
+    color: #fefefe
+}
+dl {
+    display: inline-block;
+    width: 12em;
+    vertical-align: middle;
+    }
+
+dd,dt {
+    display: inline-block;
+    margin: 0;
+}
+dt {
+    font-weight: 700;
+    width: 2.5em;
+}
+dd {
+    width: 9.5em;
+}
+/* Loading screen */
+#loader{
+    position:fixed;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    z-index:9999;
+    background:#43b2e0
+}
+#loader img{
+    width:48px; height:48px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    margin:-24px 0 0 -24px;
+    -webkit-transition:opacity .2s;
+    transition:opacity .2s;
+    -webkit-animation-duration:.8s;
+    animation-duration:.8s;
+    -webkit-animation-name:spin;
+    animation-name:spin;
+    -webkit-animation-iteration-count:infinite;
+    animation-iteration-count:infinite;
+    -webkit-animation-timing-function:ease-in-out;
+    animation-timing-function:ease-in-out
+}
+@-webkit-keyframes spin{
+    0%{
+        -webkit-transform:rotate(0deg)}
+    100%{
+        -webkit-transform:rotate(360deg)} }
+@keyframes spin{
+    0%{
+        -webkit-transform:rotate(0deg);
+        transform:rotate(0deg)}
+    100%{
+        -webkit-transform:rotate(360deg);
+        transform:rotate(360deg)} }
+/* Filters */
+.filter{
+    display:inline-block;
+    margin:0 1em 1em 0;
+    position: relative;
+}
+.filter:nth-child(4n) {
+    margin-right:0
+}
+.filter label{
+    vertical-align:middle;
+    display: inline-block;
+    padding:0 1em 0;
+    width:6.5em;
+    text-align:center;
+}
+.filter > label{
+    line-height: 2em;;
+    background:#dadad8;
+    width:8.5em;
+    color:#010101
+}
+.filter button, #search-bar{
+    width:10.5rem;
+    border:none;
+    padding:0.375rem 0.1875rem;
+    font-size:.875em;
+    line-height: 1.125rem;
+    background:#fff;
+    color:inherit;
+    cursor: pointer;
+    border:1px solid transparent;
+    vertical-align:middle
+}
+.filter:not(.disabled) button::after{
+    display: inline-block;
+    width:0;
+    height:0;
+    content:'';
+    border-top: 4px solid;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+    position: absolute;
+    top: 1em;
+    right: 1em;
+}
+.filter button:hover,
+.filter.active button,
+.filter.disabled button{
+    background:#e6e6e6
+}
+.filter.disabled button{
+    cursor: auto;
+}
+.filter:not(.active) .dropdown-menu{
+    display:none
+}
+.dropdown-menu{
+    position: absolute;
+    top: 100%;
+    left: 10.5rem;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    z-index: 999;
+    font-size: 0.875em;
+    min-width: 10.5rem;
+    text-align: left;
+    border: 1px solid #dadad8;
+    background: #fefefe;
+}
+.filter[data-type$=type] .dropdown-menu,
+.filter[data-type$=type] .dropdown-menu li label[for$=all]{
+    width:21rem
+}
+.dropdown-menu li{
+    position: relative;
+    display: inline-block;
+    min-width: 10.5rem;
+}
+.dropdown-menu li:hover{
+    background: #f5f5f5;
+}
+.dropdown-menu li.active{
+    background: #428bca;
+    color: #f0f0f0;
+}
+.dropdown-menu li label{
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    padding: 0.25rem 1rem 0.375rem 2rem;
+    cursor: pointer;
+    margin: 0;
+    text-align: left;
+}
+.dropdown-menu li input{
+    position: absolute;
+    left: .5em;
+    top: .375em;
+    font-size: inherit;
+}
+
+/* Reddit Table */
+#copy2reddit {
+    margin: 2em 0 0
+}
+#copy2reddit .filter{
+    margin-right:0
+}
+#copy2reddit .filter > label {
+    width: 30.5em;
+    background: #dadad8;
+    margin:0;
+    position:relative;
+}
+#copy2reddit .dropdown-menu {
+    left:32.5rem;
+    width:21rem;
+}
+
+#markdown {
+    font-family:Consolas,monaco,monospace;
+    font-size:0.75em;
+    height:15em;
+    overflow:scroll;
+    background:#fff;
+    padding:0.5em;
+    border:0.0625em solid #ccc;
+}
+#markdown .line {
+    white-space: nowrap;
+    word-wrap: break-word;
+}
+
+/* Footer */
+[role="contentinfo"] {
+    padding: 1.5em 0 0;
+    font-size: 0.75em;
+    text-align: right
+}
+
+/* Table */
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+    background: #fefefe;
+    line-height: 1;
+    margin:1em 0 0;
+    width: 100%
+}
+table thead tr {
+    color: #fdfdfd;
+    background: #010101
+}
+thead th { border-bottom: 0.25em solid #010101; }
+thead th.hp { border-bottom-color:#77f296; }
+thead th.atk { border-bottom-color:#f4e585; }
+thead th.def { border-bottom-color:#ffb17a; }
+thead th.spa { border-bottom-color:#88dee3; }
+thead th.spd { border-bottom-color:#859fff; }
+thead th.spe { border-bottom-color:#d880ff; }
+td, th {
+    text-align: center;
+    padding: 0.375em 0.5em;
+    vertical-align: middle;
+}
+td {
+    border-bottom:1px solid #dadad8
+}
+tr {
+    position:relative
+}
+td.sprite{padding:0; width:4.25em; height: 3.5em;}
+td.sprite, td.name, td.hp, td.atk, td.def, td.spa, td.spd, td.spe { white-space:nowrap }
+td.hp, td.atk, td.def, td.spa, td.spd, td.spe { width:2.625em }
+td.hp.rows2, td.atk.rows2, td.def.rows2, td.spa.rows2, td.spd.rows2, td.spe.rows2 { font-size:0.75em;line-height:1.45 }
+td.poke-balls { width:6.625em }
+td.hidden-power { width:3.125em }
+td.name, td.trainer, td.nature, td.ability, td.moves, td.egg-moves { text-align:left }
+td.moves,td.egg-moves { line-height:1.45 }
+
+.gender{
+    font-family:"Apple Color Emoji","Segoe UI Emoji","NotoColorEmoji","Segoe UI Symbol","Android Emoji","EmojiSymbols"
+}
+.gender.female { color:#f6807a }
+.gender.male { color:#499fff }
+
+td.name .form,td.name .nickname,td.trainer .tid { font-size:0.75em }
+
+tr:hover td {
+    background-color: rgba(67,178,224,0.5);
+    cursor:cell
+}
+tr.selected td {
+    background-color: #dadad8;
+}
+tr.selected:hover td {
+    background-color: rgba(213,58,58,0.25);
+    cursor:not-allowed
+}
+
+[data-has-hidden-ability=true] .ability { font-style: italic; }
+
+/* Natures */
+[data-nature=Adamant] td.atk, [data-nature=Brave] td.atk, [data-nature=Lonely] td.atk, [data-nature=Naughty] td.atk,
+[data-nature=Bold] td.def, [data-nature=Impish] td.def, [data-nature=Relaxed] td.def,
+[data-nature=Modest] td.spa, [data-nature=Mild] td.spa, [data-nature=Rash] td.spa, [data-nature=Quiet] td.spa,
+[data-nature=Calm] td.spd, [data-nature=Careful] td.spd, [data-nature=Sassy] td.spd,
+[data-nature=Jolly] td.spe, [data-nature=Timid] td.spe, [data-nature=Hasty] td.spe, [data-nature=Naive] td.spe{ color: #f35b96; }
+
+[data-nature=Modest] td.atk, [data-nature=Timid] td.atk, [data-nature=Calm] td.atk, [data-nature=Bold] td.atk,
+[data-nature=Lonely] td.def, [data-nature=Mild] td.def, [data-nature=Hasty] td.def,
+[data-nature=Adamant] td.spa, [data-nature=Jolly] td.spa, [data-nature=Impish] td.spa,[data-nature=Careful] td.spa,
+[data-nature=Naive] td.spd, [data-nature=Rash] td.spd, [data-nature=Naughty] td.spd,
+[data-nature=Brave] td.spe, [data-nature=Quiet] td.spe, [data-nature=Sassy] td.spe, [data-nature=Relaxed] td.spe{ color: #45c6f0; }
+
+/* Screens */
+@media screen and (max-width: 89.5em) {
+    article {
+        width:65em;
+    }
+    .filter:nth-child(3n) {
+        margin-right:0
+    }
+    .filter:nth-child(4n) {
+        margin-right:1em
+    }
+}
+@media screen and (max-width: 67.5em) {
+    article {
+        width:43em;
+    }
+    .filter:nth-child(2n) {
+        margin-right:0
+    }
+    .filter:nth-child(3n) {
+        margin-right:1em
+    }
+    header{
+        height:auto
+    }
+    header dl, .ms, .ivs, .hp, .atk, .def, .spa, .spd, .spe {
+        display: none !important
+    }
+    table {
+        font-size: 0.875em;
+    }    
+    td.sprite,td.sprite.up {
+        padding:0;
+        max-width:0;
+    }    
+}
+
+/* Item Sprites */
+.item-sprite{
+    display:inline-block;
+    text-indent:-999em;
+	width:1.625em;height:1.625em;
+	margin: 0.375em 0.125em;
+	background-image:url(img/itemsprites.png)
+}
+.item-sprite.master-ball{background-position:-26px 0}
+.item-sprite.ultra-ball{background-position:-52px 0}
+.item-sprite.great-ball{background-position:-78px 0}
+.item-sprite.poke-ball{background-position:-104px 0}
+.item-sprite.safari-ball{background-position:-130px 0}
+.item-sprite.net-ball{background-position:-156px 0}
+.item-sprite.dive-ball{background-position:-182px 0}
+.item-sprite.nest-ball{background-position:-208px 0}
+.item-sprite.repeat-ball{background-position:-234px 0}
+.item-sprite.timer-ball{background-position:-260px 0}
+.item-sprite.luxury-ball{background-position:-286px 0}
+.item-sprite.premier-ball{background-position:-312px 0}
+.item-sprite.dusk-ball{background-position:-338px 0}
+.item-sprite.heal-ball{background-position:-364px 0}
+.item-sprite.quick-ball{background-position:-390px 0}
+.item-sprite.cherish-ball{background-position:-416px 0}
+.item-sprite.fast-ball{background-position:-416px -260px}
+.item-sprite.level-ball{background-position:-442px -260px}
+.item-sprite.lure-ball{background-position:-468px -260px}
+.item-sprite.heavy-ball{background-position:-494px -260px}
+.item-sprite.love-ball{background-position:0 -286px}
+.item-sprite.friend-ball{background-position:-26px -286px}
+.item-sprite.moon-ball{background-position:-52px -286px}
+.item-sprite.sport-ball{background-position:-78px -286px}
+.item-sprite.dream-ball{background-position:-416px -312px}
+.item-sprite.beast-ball{background-position:-312px -442px}
+
+/* Menu Sprites */
+[data-pokemon] .ms{
+    display:inline-block;
+    text-indent:-999em;
+    width:4.25em;
+    height:3.5em;
+    background-image:url(https://plan.pokemonteams.io/static/img/ms_gen8.png);
+    position: absolute;
+    left:0
+}
+tr:not([data-pokemon$=giga]) .ms { top:-.5em; }
+tr:not([data-pokemon$=giga]) .sprite.up .ms { top:-.625em }
+tr[data-pokemon$=giga] .ms { top:0 }
+tr[data-pokemon$=giga] .sprite.up .ms { top:-.125em }
+[data-pokemon=bulbasaur] .ms{background-position:-68px 0}
+[data-pokemon=ivysaur] .ms{background-position:-136px 0}
+[data-pokemon=venusaur] .ms{background-position:-204px 0}
+[data-pokemon=charmander] .ms{background-position:-272px 0}
+[data-pokemon=charmeleon] .ms{background-position:-340px 0}
+[data-pokemon=charizard] .ms{background-position:-408px 0}
+[data-pokemon=squirtle] .ms{background-position:-476px 0}
+[data-pokemon=wartortle] .ms{background-position:-544px 0}
+[data-pokemon=blastoise] .ms{background-position:-612px 0}
+[data-pokemon=caterpie] .ms{background-position:-680px 0}
+[data-pokemon=metapod] .ms{background-position:-748px 0}
+[data-pokemon=butterfree] .ms{background-position:-816px 0}
+[data-pokemon=pikachu] .ms{background-position:-884px 0}
+[data-pokemon=raichu] .ms{background-position:-952px 0}
+[data-pokemon=raichu-alola] .ms{background-position:-1020px 0}
+[data-pokemon=clefairy] .ms{background-position:-1088px 0}
+[data-pokemon=clefable] .ms{background-position:-1156px 0}
+[data-pokemon=vulpix] .ms{background-position:-1224px 0}
+[data-pokemon=vulpix-alola] .ms{background-position:-1292px 0}
+[data-pokemon=ninetales] .ms{background-position:-1360px 0}
+[data-pokemon=ninetales-alola] .ms{background-position:0 -56px}
+[data-pokemon=oddish] .ms{background-position:-68px -56px}
+[data-pokemon=gloom] .ms{background-position:-136px -56px}
+[data-pokemon=vileplume] .ms{background-position:-204px -56px}
+[data-pokemon=diglett] .ms{background-position:-272px -56px}
+[data-pokemon=diglett-alola] .ms{background-position:-340px -56px}
+[data-pokemon=dugtrio] .ms{background-position:-408px -56px}
+[data-pokemon=dugtrio-alola] .ms{background-position:-476px -56px}
+[data-pokemon=meowth] .ms{background-position:-544px -56px}
+[data-pokemon=meowth-alola] .ms{background-position:-612px -56px}
+[data-pokemon=meowth-galar] .ms{background-position:-680px -56px}
+[data-pokemon=persian] .ms{background-position:-748px -56px}
+[data-pokemon=persian-alola] .ms{background-position:-816px -56px}
+[data-pokemon=growlithe] .ms{background-position:-884px -56px}
+[data-pokemon=arcanine] .ms{background-position:-952px -56px}
+[data-pokemon=machop] .ms{background-position:-1020px -56px}
+[data-pokemon=machoke] .ms{background-position:-1088px -56px}
+[data-pokemon=machamp] .ms{background-position:-1156px -56px}
+[data-pokemon=ponyta] .ms{background-position:-1224px -56px}
+[data-pokemon=ponyta-galar] .ms{background-position:-1292px -56px}
+[data-pokemon=rapidash] .ms{background-position:-1360px -56px}
+[data-pokemon=rapidash-galar] .ms{background-position:0 -112px}
+[data-pokemon=farfetchd] .ms{background-position:-68px -112px}
+[data-pokemon=farfetchd-galar] .ms{background-position:-136px -112px}
+[data-pokemon=shellder] .ms{background-position:-204px -112px}
+[data-pokemon=cloyster] .ms{background-position:-272px -112px}
+[data-pokemon=gastly] .ms{background-position:-340px -112px}
+[data-pokemon=haunter] .ms{background-position:-408px -112px}
+[data-pokemon=gengar] .ms{background-position:-476px -112px}
+[data-pokemon=onix] .ms{background-position:-544px -112px}
+[data-pokemon=krabby] .ms{background-position:-612px -112px}
+[data-pokemon=kingler] .ms{background-position:-680px -112px}
+[data-pokemon=hitmonlee] .ms{background-position:-748px -112px}
+[data-pokemon=hitmonchan] .ms{background-position:-816px -112px}
+[data-pokemon=koffing] .ms{background-position:-884px -112px}
+[data-pokemon=weezing] .ms{background-position:-952px -112px}
+[data-pokemon=weezing-galar] .ms{background-position:-1020px -112px}
+[data-pokemon=rhyhorn] .ms{background-position:-1088px -112px}
+[data-pokemon=rhydon] .ms{background-position:-1156px -112px}
+[data-pokemon=goldeen] .ms{background-position:-1224px -112px}
+[data-pokemon=seaking] .ms{background-position:-1292px -112px}
+[data-pokemon=mr-mime] .ms{background-position:-1360px -112px}
+[data-pokemon=mr-mime-galar] .ms{background-position:0 -168px}
+[data-pokemon=magikarp] .ms{background-position:-68px -168px}
+[data-pokemon=gyarados] .ms{background-position:-136px -168px}
+[data-pokemon=lapras] .ms{background-position:-204px -168px}
+[data-pokemon=ditto] .ms{background-position:-272px -168px}
+[data-pokemon=eevee] .ms{background-position:-340px -168px}
+[data-pokemon=vaporeon] .ms{background-position:-408px -168px}
+[data-pokemon=jolteon] .ms{background-position:-476px -168px}
+[data-pokemon=flareon] .ms{background-position:-544px -168px}
+[data-pokemon=snorlax] .ms{background-position:-612px -168px}
+[data-pokemon=mewtwo] .ms{background-position:-680px -168px}
+[data-pokemon=mew] .ms{background-position:-748px -168px}
+[data-pokemon=hoothoot] .ms{background-position:-816px -168px}
+[data-pokemon=noctowl] .ms{background-position:-884px -168px}
+[data-pokemon=chinchou] .ms{background-position:-952px -168px}
+[data-pokemon=lanturn] .ms{background-position:-1020px -168px}
+[data-pokemon=pichu] .ms{background-position:-1088px -168px}
+[data-pokemon=cleffa] .ms{background-position:-1156px -168px}
+[data-pokemon=togepi] .ms{background-position:-1224px -168px}
+[data-pokemon=togetic] .ms{background-position:-1292px -168px}
+[data-pokemon=natu] .ms{background-position:-1360px -168px}
+[data-pokemon=xatu] .ms{background-position:0 -224px}
+[data-pokemon=bellossom] .ms{background-position:-68px -224px}
+[data-pokemon=sudowoodo] .ms{background-position:-136px -224px}
+[data-pokemon=wooper] .ms{background-position:-204px -224px}
+[data-pokemon=quagsire] .ms{background-position:-272px -224px}
+[data-pokemon=espeon] .ms{background-position:-340px -224px}
+[data-pokemon=umbreon] .ms{background-position:-408px -224px}
+[data-pokemon=wobbuffet] .ms{background-position:-476px -224px}
+[data-pokemon=steelix] .ms{background-position:-544px -224px}
+[data-pokemon=qwilfish] .ms{background-position:-612px -224px}
+[data-pokemon=shuckle] .ms{background-position:-680px -224px}
+[data-pokemon=sneasel] .ms{background-position:-748px -224px}
+[data-pokemon=swinub] .ms{background-position:-816px -224px}
+[data-pokemon=piloswine] .ms{background-position:-884px -224px}
+[data-pokemon=corsola] .ms{background-position:-952px -224px}
+[data-pokemon=corsola-galar] .ms{background-position:-1020px -224px}
+[data-pokemon=remoraid] .ms{background-position:-1088px -224px}
+[data-pokemon=octillery] .ms{background-position:-1156px -224px}
+[data-pokemon=delibird] .ms{background-position:-1224px -224px}
+[data-pokemon=mantine] .ms{background-position:-1292px -224px}
+[data-pokemon=tyrogue] .ms{background-position:-1360px -224px}
+[data-pokemon=hitmontop] .ms{background-position:0 -280px}
+[data-pokemon=larvitar] .ms{background-position:-68px -280px}
+[data-pokemon=pupitar] .ms{background-position:-136px -280px}
+[data-pokemon=tyranitar] .ms{background-position:-204px -280px}
+[data-pokemon=celebi] .ms{background-position:-272px -280px}
+[data-pokemon=zigzagoon] .ms{background-position:-340px -280px}
+[data-pokemon=zigzagoon-galar] .ms{background-position:-408px -280px}
+[data-pokemon=linoone] .ms{background-position:-476px -280px}
+[data-pokemon=linoone-galar] .ms{background-position:-544px -280px}
+[data-pokemon=lotad] .ms{background-position:-612px -280px}
+[data-pokemon=lombre] .ms{background-position:-680px -280px}
+[data-pokemon=ludicolo] .ms{background-position:-748px -280px}
+[data-pokemon=seedot] .ms{background-position:-816px -280px}
+[data-pokemon=nuzleaf] .ms{background-position:-884px -280px}
+[data-pokemon=shiftry] .ms{background-position:-952px -280px}
+[data-pokemon=wingull] .ms{background-position:-1020px -280px}
+[data-pokemon=pelipper] .ms{background-position:-1088px -280px}
+[data-pokemon=ralts] .ms{background-position:-1156px -280px}
+[data-pokemon=kirlia] .ms{background-position:-1224px -280px}
+[data-pokemon=gardevoir] .ms{background-position:-1292px -280px}
+[data-pokemon=nincada] .ms{background-position:-1360px -280px}
+[data-pokemon=ninjask] .ms{background-position:0 -336px}
+[data-pokemon=shedinja] .ms{background-position:-68px -336px}
+[data-pokemon=sableye] .ms{background-position:-136px -336px}
+[data-pokemon=mawile] .ms{background-position:-204px -336px}
+[data-pokemon=electrike] .ms{background-position:-272px -336px}
+[data-pokemon=manectric] .ms{background-position:-340px -336px}
+[data-pokemon=roselia] .ms{background-position:-408px -336px}
+[data-pokemon=wailmer] .ms{background-position:-476px -336px}
+[data-pokemon=wailord] .ms{background-position:-544px -336px}
+[data-pokemon=torkoal] .ms{background-position:-612px -336px}
+[data-pokemon=trapinch] .ms{background-position:-680px -336px}
+[data-pokemon=vibrava] .ms{background-position:-748px -336px}
+[data-pokemon=flygon] .ms{background-position:-816px -336px}
+[data-pokemon=lunatone] .ms{background-position:-884px -336px}
+[data-pokemon=solrock] .ms{background-position:-952px -336px}
+[data-pokemon=barboach] .ms{background-position:-1020px -336px}
+[data-pokemon=whiscash] .ms{background-position:-1088px -336px}
+[data-pokemon=corphish] .ms{background-position:-1156px -336px}
+[data-pokemon=crawdaunt] .ms{background-position:-1224px -336px}
+[data-pokemon=baltoy] .ms{background-position:-1292px -336px}
+[data-pokemon=claydol] .ms{background-position:-1360px -336px}
+[data-pokemon=feebas] .ms{background-position:0 -392px}
+[data-pokemon=milotic] .ms{background-position:-68px -392px}
+[data-pokemon=duskull] .ms{background-position:-136px -392px}
+[data-pokemon=dusclops] .ms{background-position:-204px -392px}
+[data-pokemon=wynaut] .ms{background-position:-272px -392px}
+[data-pokemon=snorunt] .ms{background-position:-340px -392px}
+[data-pokemon=glalie] .ms{background-position:-408px -392px}
+[data-pokemon=jirachi] .ms{background-position:-476px -392px}
+[data-pokemon=budew] .ms{background-position:-544px -392px}
+[data-pokemon=roserade] .ms{background-position:-612px -392px}
+[data-pokemon=combee] .ms{background-position:-680px -392px}
+[data-pokemon=vespiquen] .ms{background-position:-748px -392px}
+[data-pokemon=cherubi] .ms{background-position:-816px -392px}
+[data-pokemon=cherrim] .ms{background-position:-884px -392px}
+[data-pokemon=cherrim-sunshine] .ms{background-position:-952px -392px}
+[data-pokemon=shellos] .ms{background-position:-1020px -392px}
+[data-pokemon=shellos-east] .ms{background-position:-1088px -392px}
+[data-pokemon=gastrodon] .ms{background-position:-1156px -392px}
+[data-pokemon=gastrodon-east] .ms{background-position:-1224px -392px}
+[data-pokemon=drifloon] .ms{background-position:-1292px -392px}
+[data-pokemon=drifblim] .ms{background-position:-1360px -392px}
+[data-pokemon=stunky] .ms{background-position:0 -448px}
+[data-pokemon=skuntank] .ms{background-position:-68px -448px}
+[data-pokemon=bronzor] .ms{background-position:-136px -448px}
+[data-pokemon=bronzong] .ms{background-position:-204px -448px}
+[data-pokemon=bonsly] .ms{background-position:-272px -448px}
+[data-pokemon=mime-jr] .ms{background-position:-340px -448px}
+[data-pokemon=munchlax] .ms{background-position:-408px -448px}
+[data-pokemon=riolu] .ms{background-position:-476px -448px}
+[data-pokemon=lucario] .ms{background-position:-544px -448px}
+[data-pokemon=hippopotas] .ms{background-position:-612px -448px}
+[data-pokemon=hippowdon] .ms{background-position:-680px -448px}
+[data-pokemon=skorupi] .ms{background-position:-748px -448px}
+[data-pokemon=drapion] .ms{background-position:-816px -448px}
+[data-pokemon=croagunk] .ms{background-position:-884px -448px}
+[data-pokemon=toxicroak] .ms{background-position:-952px -448px}
+[data-pokemon=mantyke] .ms{background-position:-1020px -448px}
+[data-pokemon=snover] .ms{background-position:-1088px -448px}
+[data-pokemon=abomasnow] .ms{background-position:-1156px -448px}
+[data-pokemon=weavile] .ms{background-position:-1224px -448px}
+[data-pokemon=rhyperior] .ms{background-position:-1292px -448px}
+[data-pokemon=togekiss] .ms{background-position:-1360px -448px}
+[data-pokemon=leafeon] .ms{background-position:0 -504px}
+[data-pokemon=glaceon] .ms{background-position:-68px -504px}
+[data-pokemon=mamoswine] .ms{background-position:-136px -504px}
+[data-pokemon=gallade] .ms{background-position:-204px -504px}
+[data-pokemon=dusknoir] .ms{background-position:-272px -504px}
+[data-pokemon=froslass] .ms{background-position:-340px -504px}
+[data-pokemon=rotom] .ms{background-position:-408px -504px}
+[data-pokemon=rotom-heat] .ms{background-position:-476px -504px}
+[data-pokemon=rotom-wash] .ms{background-position:-544px -504px}
+[data-pokemon=rotom-frost] .ms{background-position:-612px -504px}
+[data-pokemon=rotom-fan] .ms{background-position:-680px -504px}
+[data-pokemon=rotom-mow] .ms{background-position:-748px -504px}
+[data-pokemon=purrloin] .ms{background-position:-816px -504px}
+[data-pokemon=liepard] .ms{background-position:-884px -504px}
+[data-pokemon=munna] .ms{background-position:-952px -504px}
+[data-pokemon=musharna] .ms{background-position:-1020px -504px}
+[data-pokemon=pidove] .ms{background-position:-1088px -504px}
+[data-pokemon=tranquill] .ms{background-position:-1156px -504px}
+[data-pokemon=unfezant] .ms{background-position:-1224px -504px}
+[data-pokemon=roggenrola] .ms{background-position:-1292px -504px}
+[data-pokemon=boldore] .ms{background-position:-1360px -504px}
+[data-pokemon=gigalith] .ms{background-position:0 -560px}
+[data-pokemon=woobat] .ms{background-position:-68px -560px}
+[data-pokemon=swoobat] .ms{background-position:-136px -560px}
+[data-pokemon=drilbur] .ms{background-position:-204px -560px}
+[data-pokemon=excadrill] .ms{background-position:-272px -560px}
+[data-pokemon=timburr] .ms{background-position:-340px -560px}
+[data-pokemon=gurdurr] .ms{background-position:-408px -560px}
+[data-pokemon=conkeldurr] .ms{background-position:-476px -560px}
+[data-pokemon=tympole] .ms{background-position:-544px -560px}
+[data-pokemon=palpitoad] .ms{background-position:-612px -560px}
+[data-pokemon=seismitoad] .ms{background-position:-680px -560px}
+[data-pokemon=throh] .ms{background-position:-748px -560px}
+[data-pokemon=sawk] .ms{background-position:-816px -560px}
+[data-pokemon=cottonee] .ms{background-position:-884px -560px}
+[data-pokemon=whimsicott] .ms{background-position:-952px -560px}
+[data-pokemon=basculin] .ms{background-position:-1020px -560px}
+[data-pokemon=basculin-blue-striped] .ms{background-position:-1088px -560px}
+[data-pokemon=darumaka] .ms{background-position:-1156px -560px}
+[data-pokemon=darumaka-galar] .ms{background-position:-1224px -560px}
+[data-pokemon=darmanitan] .ms{background-position:-1292px -560px}
+[data-pokemon=darmanitan-galar] .ms{background-position:-1360px -560px}
+[data-pokemon=maractus] .ms{background-position:0 -616px}
+[data-pokemon=dwebble] .ms{background-position:-68px -616px}
+[data-pokemon=crustle] .ms{background-position:-136px -616px}
+[data-pokemon=scraggy] .ms{background-position:-204px -616px}
+[data-pokemon=scrafty] .ms{background-position:-272px -616px}
+[data-pokemon=sigilyph] .ms{background-position:-340px -616px}
+[data-pokemon=yamask] .ms{background-position:-408px -616px}
+[data-pokemon=yamask-galar] .ms{background-position:-476px -616px}
+[data-pokemon=cofagrigus] .ms{background-position:-544px -616px}
+[data-pokemon=trubbish] .ms{background-position:-612px -616px}
+[data-pokemon=garbodor] .ms{background-position:-680px -616px}
+[data-pokemon=minccino] .ms{background-position:-748px -616px}
+[data-pokemon=cinccino] .ms{background-position:-816px -616px}
+[data-pokemon=gothita] .ms{background-position:-884px -616px}
+[data-pokemon=gothorita] .ms{background-position:-952px -616px}
+[data-pokemon=gothitelle] .ms{background-position:-1020px -616px}
+[data-pokemon=solosis] .ms{background-position:-1088px -616px}
+[data-pokemon=duosion] .ms{background-position:-1156px -616px}
+[data-pokemon=reuniclus] .ms{background-position:-1224px -616px}
+[data-pokemon=vanillite] .ms{background-position:-1292px -616px}
+[data-pokemon=vanillish] .ms{background-position:-1360px -616px}
+[data-pokemon=vanilluxe] .ms{background-position:0 -672px}
+[data-pokemon=karrablast] .ms{background-position:-68px -672px}
+[data-pokemon=escavalier] .ms{background-position:-136px -672px}
+[data-pokemon=frillish] .ms{background-position:-204px -672px}
+[data-pokemon=jellicent] .ms{background-position:-272px -672px}
+[data-pokemon=joltik] .ms{background-position:-340px -672px}
+[data-pokemon=galvantula] .ms{background-position:-408px -672px}
+[data-pokemon=ferroseed] .ms{background-position:-476px -672px}
+[data-pokemon=ferrothorn] .ms{background-position:-544px -672px}
+[data-pokemon=klink] .ms{background-position:-612px -672px}
+[data-pokemon=klang] .ms{background-position:-680px -672px}
+[data-pokemon=klinklang] .ms{background-position:-748px -672px}
+[data-pokemon=elgyem] .ms{background-position:-816px -672px}
+[data-pokemon=beheeyem] .ms{background-position:-884px -672px}
+[data-pokemon=litwick] .ms{background-position:-952px -672px}
+[data-pokemon=lampent] .ms{background-position:-1020px -672px}
+[data-pokemon=chandelure] .ms{background-position:-1088px -672px}
+[data-pokemon=axew] .ms{background-position:-1156px -672px}
+[data-pokemon=fraxure] .ms{background-position:-1224px -672px}
+[data-pokemon=haxorus] .ms{background-position:-1292px -672px}
+[data-pokemon=cubchoo] .ms{background-position:-1360px -672px}
+[data-pokemon=beartic] .ms{background-position:0 -728px}
+[data-pokemon=shelmet] .ms{background-position:-68px -728px}
+[data-pokemon=accelgor] .ms{background-position:-136px -728px}
+[data-pokemon=stunfisk] .ms{background-position:-204px -728px}
+[data-pokemon=stunfisk-galar] .ms{background-position:-272px -728px}
+[data-pokemon=golett] .ms{background-position:-340px -728px}
+[data-pokemon=golurk] .ms{background-position:-408px -728px}
+[data-pokemon=pawniard] .ms{background-position:-476px -728px}
+[data-pokemon=bisharp] .ms{background-position:-544px -728px}
+[data-pokemon=rufflet] .ms{background-position:-612px -728px}
+[data-pokemon=braviary] .ms{background-position:-680px -728px}
+[data-pokemon=vullaby] .ms{background-position:-748px -728px}
+[data-pokemon=mandibuzz] .ms{background-position:-816px -728px}
+[data-pokemon=heatmor] .ms{background-position:-884px -728px}
+[data-pokemon=durant] .ms{background-position:-952px -728px}
+[data-pokemon=deino] .ms{background-position:-1020px -728px}
+[data-pokemon=zweilous] .ms{background-position:-1088px -728px}
+[data-pokemon=hydreigon] .ms{background-position:-1156px -728px}
+[data-pokemon=cobalion] .ms{background-position:-1224px -728px}
+[data-pokemon=terrakion] .ms{background-position:-1292px -728px}
+[data-pokemon=virizion] .ms{background-position:-1360px -728px}
+[data-pokemon=reshiram] .ms{background-position:0 -784px}
+[data-pokemon=zekrom] .ms{background-position:-68px -784px}
+[data-pokemon=kyurem] .ms{background-position:-136px -784px}
+[data-pokemon=kyurem-white] .ms{background-position:-204px -784px}
+[data-pokemon=kyurem-black] .ms{background-position:-272px -784px}
+[data-pokemon=keldeo] .ms{background-position:-340px -784px}
+[data-pokemon=bunnelby] .ms{background-position:-408px -784px}
+[data-pokemon=diggersby] .ms{background-position:-476px -784px}
+[data-pokemon=pancham] .ms{background-position:-544px -784px}
+[data-pokemon=pangoro] .ms{background-position:-612px -784px}
+[data-pokemon=espurr] .ms{background-position:-680px -784px}
+[data-pokemon=meowstic] .ms{background-position:-748px -784px}
+[data-pokemon=meowstic-female] .ms{background-position:-816px -784px}
+[data-pokemon=honedge] .ms{background-position:-884px -784px}
+[data-pokemon=doublade] .ms{background-position:-952px -784px}
+[data-pokemon=aegislash] .ms{background-position:-1020px -784px}
+[data-pokemon=aegislash-blade] .ms{background-position:-1088px -784px}
+[data-pokemon=spritzee] .ms{background-position:-1156px -784px}
+[data-pokemon=aromatisse] .ms{background-position:-1224px -784px}
+[data-pokemon=swirlix] .ms{background-position:-1292px -784px}
+[data-pokemon=slurpuff] .ms{background-position:-1360px -784px}
+[data-pokemon=inkay] .ms{background-position:0 -840px}
+[data-pokemon=malamar] .ms{background-position:-68px -840px}
+[data-pokemon=binacle] .ms{background-position:-136px -840px}
+[data-pokemon=barbaracle] .ms{background-position:-204px -840px}
+[data-pokemon=helioptile] .ms{background-position:-272px -840px}
+[data-pokemon=heliolisk] .ms{background-position:-340px -840px}
+[data-pokemon=sylveon] .ms{background-position:-408px -840px}
+[data-pokemon=hawlucha] .ms{background-position:-476px -840px}
+[data-pokemon=goomy] .ms{background-position:-544px -840px}
+[data-pokemon=sliggoo] .ms{background-position:-612px -840px}
+[data-pokemon=goodra] .ms{background-position:-680px -840px}
+[data-pokemon=phantump] .ms{background-position:-748px -840px}
+[data-pokemon=trevenant] .ms{background-position:-816px -840px}
+[data-pokemon=pumpkaboo] .ms{background-position:-884px -840px}
+[data-pokemon=gourgeist] .ms{background-position:-952px -840px}
+[data-pokemon=bergmite] .ms{background-position:-1020px -840px}
+[data-pokemon=avalugg] .ms{background-position:-1088px -840px}
+[data-pokemon=noibat] .ms{background-position:-1156px -840px}
+[data-pokemon=noivern] .ms{background-position:-1224px -840px}
+[data-pokemon=rowlet] .ms{background-position:-1292px -840px}
+[data-pokemon=dartrix] .ms{background-position:-1360px -840px}
+[data-pokemon=decidueye] .ms{background-position:0 -896px}
+[data-pokemon=litten] .ms{background-position:-68px -896px}
+[data-pokemon=torracat] .ms{background-position:-136px -896px}
+[data-pokemon=incineroar] .ms{background-position:-204px -896px}
+[data-pokemon=popplio] .ms{background-position:-272px -896px}
+[data-pokemon=brionne] .ms{background-position:-340px -896px}
+[data-pokemon=primarina] .ms{background-position:-408px -896px}
+[data-pokemon=grubbin] .ms{background-position:-476px -896px}
+[data-pokemon=charjabug] .ms{background-position:-544px -896px}
+[data-pokemon=vikavolt] .ms{background-position:-612px -896px}
+[data-pokemon=cutiefly] .ms{background-position:-680px -896px}
+[data-pokemon=ribombee] .ms{background-position:-748px -896px}
+[data-pokemon=wishiwashi] .ms{background-position:-816px -896px}
+[data-pokemon=wishiwashi-school] .ms{background-position:-884px -896px}
+[data-pokemon=mareanie] .ms{background-position:-952px -896px}
+[data-pokemon=toxapex] .ms{background-position:-1020px -896px}
+[data-pokemon=mudbray] .ms{background-position:-1088px -896px}
+[data-pokemon=mudsdale] .ms{background-position:-1156px -896px}
+[data-pokemon=dewpider] .ms{background-position:-1224px -896px}
+[data-pokemon=araquanid] .ms{background-position:-1292px -896px}
+[data-pokemon=morelull] .ms{background-position:-1360px -896px}
+[data-pokemon=shiinotic] .ms{background-position:0 -952px}
+[data-pokemon=salandit] .ms{background-position:-68px -952px}
+[data-pokemon=salazzle] .ms{background-position:-136px -952px}
+[data-pokemon=stufful] .ms{background-position:-204px -952px}
+[data-pokemon=bewear] .ms{background-position:-272px -952px}
+[data-pokemon=bounsweet] .ms{background-position:-340px -952px}
+[data-pokemon=steenee] .ms{background-position:-408px -952px}
+[data-pokemon=tsareena] .ms{background-position:-476px -952px}
+[data-pokemon=oranguru] .ms{background-position:-544px -952px}
+[data-pokemon=passimian] .ms{background-position:-612px -952px}
+[data-pokemon=wimpod] .ms{background-position:-680px -952px}
+[data-pokemon=golisopod] .ms{background-position:-748px -952px}
+[data-pokemon=pyukumuku] .ms{background-position:-816px -952px}
+[data-pokemon=type-null] .ms{background-position:-884px -952px}
+[data-pokemon=silvally] .ms{background-position:-952px -952px}
+[data-pokemon=turtonator] .ms{background-position:-1020px -952px}
+[data-pokemon=togedemaru] .ms{background-position:-1088px -952px}
+[data-pokemon=mimikyu] .ms{background-position:-1156px -952px}
+[data-pokemon=drampa] .ms{background-position:-1224px -952px}
+[data-pokemon=dhelmise] .ms{background-position:-1292px -952px}
+[data-pokemon=jangmo-o] .ms{background-position:-1360px -952px}
+[data-pokemon=hakamo-o] .ms{background-position:0 -1008px}
+[data-pokemon=kommo-o] .ms{background-position:-68px -1008px}
+[data-pokemon=cosmog] .ms{background-position:-136px -1008px}
+[data-pokemon=cosmoem] .ms{background-position:-204px -1008px}
+[data-pokemon=solgaleo] .ms{background-position:-272px -1008px}
+[data-pokemon=lunala] .ms{background-position:-340px -1008px}
+[data-pokemon=necrozma] .ms{background-position:-408px -1008px}
+[data-pokemon=necrozma-dusk-mane] .ms{background-position:-476px -1008px}
+[data-pokemon=necrozma-dawn-wings] .ms{background-position:-544px -1008px}
+[data-pokemon=marshadow] .ms{background-position:-612px -1008px}
+[data-pokemon=zeraora] .ms{background-position:-680px -1008px}
+[data-pokemon=meltan] .ms{background-position:-748px -1008px}
+[data-pokemon=melmetal] .ms{background-position:-816px -1008px}
+[data-pokemon=grookey] .ms{background-position:-884px -1008px}
+[data-pokemon=thwackey] .ms{background-position:-952px -1008px}
+[data-pokemon=rillaboom] .ms{background-position:-1020px -1008px}
+[data-pokemon=scorbunny] .ms{background-position:-1088px -1008px}
+[data-pokemon=raboot] .ms{background-position:-1156px -1008px}
+[data-pokemon=cinderace] .ms{background-position:-1224px -1008px}
+[data-pokemon=sobble] .ms{background-position:-1292px -1008px}
+[data-pokemon=drizzile] .ms{background-position:-1360px -1008px}
+[data-pokemon=inteleon] .ms{background-position:0 -1064px}
+[data-pokemon=skwovet] .ms{background-position:-68px -1064px}
+[data-pokemon=greedent] .ms{background-position:-136px -1064px}
+[data-pokemon=rookidee] .ms{background-position:-204px -1064px}
+[data-pokemon=corvisquire] .ms{background-position:-272px -1064px}
+[data-pokemon=corviknight] .ms{background-position:-340px -1064px}
+[data-pokemon=blipbug] .ms{background-position:-408px -1064px}
+[data-pokemon=dottler] .ms{background-position:-476px -1064px}
+[data-pokemon=orbeetle] .ms{background-position:-544px -1064px}
+[data-pokemon=nickit] .ms{background-position:-612px -1064px}
+[data-pokemon=thievul] .ms{background-position:-680px -1064px}
+[data-pokemon=gossifleur] .ms{background-position:-748px -1064px}
+[data-pokemon=eldegoss] .ms{background-position:-816px -1064px}
+[data-pokemon=wooloo] .ms{background-position:-884px -1064px}
+[data-pokemon=dubwool] .ms{background-position:-952px -1064px}
+[data-pokemon=chewtle] .ms{background-position:-1020px -1064px}
+[data-pokemon=drednaw] .ms{background-position:-1088px -1064px}
+[data-pokemon=yamper] .ms{background-position:-1156px -1064px}
+[data-pokemon=boltund] .ms{background-position:-1224px -1064px}
+[data-pokemon=rolycoly] .ms{background-position:-1292px -1064px}
+[data-pokemon=carkol] .ms{background-position:-1360px -1064px}
+[data-pokemon=coalossal] .ms{background-position:0 -1120px}
+[data-pokemon=applin] .ms{background-position:-68px -1120px}
+[data-pokemon=flapple] .ms{background-position:-136px -1120px}
+[data-pokemon=appletun] .ms{background-position:-204px -1120px}
+[data-pokemon=silicobra] .ms{background-position:-272px -1120px}
+[data-pokemon=sandaconda] .ms{background-position:-340px -1120px}
+[data-pokemon=cramorant] .ms{background-position:-408px -1120px}
+[data-pokemon=arrokuda] .ms{background-position:-476px -1120px}
+[data-pokemon=barraskewda] .ms{background-position:-544px -1120px}
+[data-pokemon=toxel] .ms{background-position:-612px -1120px}
+[data-pokemon=toxtricity] .ms{background-position:-680px -1120px}
+[data-pokemon=toxtricity-low-key] .ms{background-position:-748px -1120px}
+[data-pokemon=sizzlipede] .ms{background-position:-816px -1120px}
+[data-pokemon=centiskorch] .ms{background-position:-884px -1120px}
+[data-pokemon=clobbopus] .ms{background-position:-952px -1120px}
+[data-pokemon=grapploct] .ms{background-position:-1020px -1120px}
+[data-pokemon=sinistea] .ms{background-position:-1088px -1120px}
+[data-pokemon=polteageist] .ms{background-position:-1156px -1120px}
+[data-pokemon=hatenna] .ms{background-position:-1224px -1120px}
+[data-pokemon=hattrem] .ms{background-position:-1292px -1120px}
+[data-pokemon=hatterene] .ms{background-position:-1360px -1120px}
+[data-pokemon=impidimp] .ms{background-position:0 -1176px}
+[data-pokemon=morgrem] .ms{background-position:-68px -1176px}
+[data-pokemon=grimmsnarl] .ms{background-position:-136px -1176px}
+[data-pokemon=obstagoon] .ms{background-position:-204px -1176px}
+[data-pokemon=perrserker] .ms{background-position:-272px -1176px}
+[data-pokemon=cursola] .ms{background-position:-340px -1176px}
+[data-pokemon=sirfetchd] .ms{background-position:-408px -1176px}
+[data-pokemon=mr-rime] .ms{background-position:-476px -1176px}
+[data-pokemon=runerigus] .ms{background-position:-544px -1176px}
+[data-pokemon=milcery] .ms{background-position:-612px -1176px}
+[data-pokemon=alcremie] .ms{background-position:-680px -1176px}
+[data-pokemon=falinks] .ms{background-position:-748px -1176px}
+[data-pokemon=pincurchin] .ms{background-position:-816px -1176px}
+[data-pokemon=snom] .ms{background-position:-884px -1176px}
+[data-pokemon=frosmoth] .ms{background-position:-952px -1176px}
+[data-pokemon=stonjourner] .ms{background-position:-1020px -1176px}
+[data-pokemon=eiscue] .ms{background-position:-1088px -1176px}
+[data-pokemon=indeedee] .ms{background-position:-1156px -1176px}
+[data-pokemon=indeedee-female] .ms{background-position:-1224px -1176px}
+[data-pokemon=morpeko] .ms{background-position:-1292px -1176px}
+[data-pokemon=cufant] .ms{background-position:-1360px -1176px}
+[data-pokemon=copperajah] .ms{background-position:0 -1232px}
+[data-pokemon=dracozolt] .ms{background-position:-68px -1232px}
+[data-pokemon=arctozolt] .ms{background-position:-136px -1232px}
+[data-pokemon=dracovish] .ms{background-position:-204px -1232px}
+[data-pokemon=arctovish] .ms{background-position:-272px -1232px}
+[data-pokemon=duraludon] .ms{background-position:-340px -1232px}
+[data-pokemon=dreepy] .ms{background-position:-408px -1232px}
+[data-pokemon=drakloak] .ms{background-position:-476px -1232px}
+[data-pokemon=dragapult] .ms{background-position:-544px -1232px}
+[data-pokemon=zacian] .ms{background-position:-612px -1232px}
+[data-pokemon=zacian-crowned] .ms{background-position:-680px -1232px}
+[data-pokemon=zamazenta] .ms{background-position:-748px -1232px}
+[data-pokemon=zamazenta-crowned] .ms{background-position:-816px -1232px}
+[data-pokemon=eternatus] .ms{background-position:-884px -1232px}
+[data-pokemon=charizard-giga] .ms{background-position:-952px -1232px}
+[data-pokemon=butterfree-giga] .ms{background-position:-1020px -1232px}
+[data-pokemon=pikachu-giga] .ms{background-position:-1088px -1232px}
+[data-pokemon=meowth-giga] .ms{background-position:-1156px -1232px}
+[data-pokemon=machamp-giga] .ms{background-position:-1224px -1232px}
+[data-pokemon=gengar-giga] .ms{background-position:-1292px -1232px}
+[data-pokemon=kingler-giga] .ms{background-position:-1360px -1232px}
+[data-pokemon=lapras-giga] .ms{background-position:0 -1288px}
+[data-pokemon=eevee-giga] .ms{background-position:-68px -1288px}
+[data-pokemon=snorlax-giga] .ms{background-position:-136px -1288px}
+[data-pokemon=garbodor-giga] .ms{background-position:-204px -1288px}
+[data-pokemon=melmetal-giga] .ms{background-position:-272px -1288px}
+[data-pokemon=corviknight-giga] .ms{background-position:-340px -1288px}
+[data-pokemon=orbeetle-giga] .ms{background-position:-408px -1288px}
+[data-pokemon=drednaw-giga] .ms{background-position:-476px -1288px}
+[data-pokemon=coalossal-giga] .ms{background-position:-544px -1288px}
+[data-pokemon=flapple-giga] .ms{background-position:-612px -1288px}
+[data-pokemon=appletun-giga] .ms{background-position:-680px -1288px}
+[data-pokemon=sandaconda-giga] .ms{background-position:-748px -1288px}
+[data-pokemon=toxtricity-giga] .ms{background-position:-816px -1288px}
+[data-pokemon=centiskorch-giga] .ms{background-position:-884px -1288px}
+[data-pokemon=hatterene-giga] .ms{background-position:-952px -1288px}
+[data-pokemon=grimmsnarl-giga] .ms{background-position:-1020px -1288px}
+[data-pokemon=alcremie-giga] .ms{background-position:-1088px -1288px}
+[data-pokemon=copperajah-giga] .ms{background-position:-1156px -1288px}
+[data-pokemon=duraludon-giga] .ms{background-position:-1224px -1288px}

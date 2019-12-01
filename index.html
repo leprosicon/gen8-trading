@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Pokémon Trading Spreadsheet</title>
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="shortcut icon" href="static/img/favicon.png">
+    <script src="static/config.js"></script>
+</head>
+
+<body>
+
+<article>
+    <div id="loader">
+        <img src="https://plan.pokemonteams.io/static/img/pokeball_load.png">
+        <img src="static/img/itemsprites.png" class="hidden">
+        <img src="https://plan.pokemonteams.io/static/img/ms_gen8.png" class="hidden">
+    </div>
+    <header>
+        <h1><a href="#" class="name">???</a>'s Pokémon Trading Sheet</h1>
+    </header>
+    <nav></nav>
+    <table>
+        <thead>
+            <tr>
+                <th class="name" colspan="2" rowspan="2">Pokémon</th>
+                <th class="trainer" rowspan="2"><abbr title="Original Trainer">OT</abbr></th>
+                <th class="nature" rowspan="2">Nature</th>
+                <th class="ability" rowspan="2">Ability</th>
+                <th class="ivs" colspan="6"><abbr title="Individual Values">IVs</abbr></th>
+                <th class="egg-moves" rowspan="2">Egg Moves</th>
+                <th class="poke-balls" rowspan="2">Poké Ball</th>
+            </tr>
+            <tr>
+                <th class="hp"><abbr title="Hit Points">HP</abbr></th>
+                <th class="atk"><abbr title="Attack">Atk</abbr></th>
+                <th class="def"><abbr title="Defense">Def</abbr></th>
+                <th class="spa"><abbr title="Special Attack">SpA</abbr></th>
+                <th class="spd"><abbr title="Special Defense">SpD</abbr></th>
+                <th class="spe"><abbr title="Speed">Spe</abbr></th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <div id="copy2reddit">
+        <div id="markdown" class="hidden"
+            ><span class="line">
+                <span class="name">| Pokémon |</span
+                ><span class="trainer"> OT/TID |</span
+                ><span class="nature"> Nature |</span
+                ><span class="ability"> Ability |</span
+                ><span class="ivs"> IVs |</span
+                ><span class="evs"> EVs |</span
+                ><span class="egg-moves"> Egg Moves |</span
+                ><span class="poke-balls"> Poké Ball |</span
+                ><span class="language"> Language |</span
+                ><span class="notes"> Notes |</span
+                ><br>
+            </span
+            ><span class="line">
+                <span class="name">|---------|</span
+                ><span class="trainer">--------|</span
+                ><span class="nature">--------|</span
+                ><span class="ability">---------|</span
+                ><span class="ivs">:---:|</span
+                ><span class="evs">:---:|</span
+                ><span class="egg-moves">-----------|</span
+                ><span class="poke-balls">-----------|</span
+                ><span class="language">:--------:|</span
+                ><span class="notes">:------|</span
+                ><br>
+            </span>
+        </div>
+    </div>
+    <footer role="contentinfo">
+        <p>
+            © of <a href="http://twitter.com/richi3f">richi3f</a>, <time datetime="2017">2017</time>-<time datetime="2019">2019</time><br>
+            <a href="https://clipboardjs.com">Clipboard.js</a> is © of <a href="http://zenorocha.com">Zeno Rocha</a>, <time datetime="2015">2015</time>-<time datetime="2019">2019</time><br>
+            Pokémon is © of Nintendo, <time datetime="1995">1995</time>-<time datetime="2019">2019</time>
+        </p>
+    </footer>
+</article>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" type="text/javascript"></script>
+<script src="static/script8.js"></script>
+
+</body>
+</html>
