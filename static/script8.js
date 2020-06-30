@@ -595,7 +595,7 @@ function loadPokemon(pokemonData) {
                 // Notes
                 line += '<span class="notes"> ' + $this.data( 'notes' ) + ' |</span>';
                 // Add line
-                line = '<span class="line" data-id=\'' + id + '">' + line + '<br></span>';
+                line = '<span class="line" data-id="' + id + '">' + line + '<br></span>';
                 $markdown.append(line);
                 toggleCols();
             }
