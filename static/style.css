@@ -299,7 +299,7 @@ td {
     border-bottom:1px solid #dadad8
 }
 tr {
-    position:relative
+    position:relative;
 }
 td.sprite{padding:0; width:4.25em; height: 3.5em;}
 td.sprite, td.name, td.hp, td.atk, td.def, td.spa, td.spd, td.spe { white-space:nowrap }
