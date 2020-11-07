@@ -377,8 +377,8 @@ function loadPokemon(pokemonData) {
             if (pokemon.ability == pokemonData[slug].abs[2]) {
                 pokemon.hasHiddenAbility = true;
             }
-            pokemon.ivs = new StatAttributes([tryGetValue(this, ['hpiv'], 'x'), tryGetValue(this, ['atkiv'], 'x'), tryGetValue(this, ['defiv'], 'x'), tryGetValue(this, ['spaiv'], 'x'), tryGetValue(this, ['spdiv'], 'x'), tryGetValue(this, ['speiv'], 'x')]);
-            pokemon.evs = new StatAttributes([tryGetValue(this, ['hpev']), tryGetValue(this, ['atkev']), tryGetValue(this, ['defev']), tryGetValue(this, ['spaev']), tryGetValue(this, ['spdev']), tryGetValue(this, ['speev'])]);
+//            pokemon.ivs = new StatAttributes([tryGetValue(this, ['hpiv'], 'x'), tryGetValue(this, ['atkiv'], 'x'), tryGetValue(this, ['defiv'], 'x'), tryGetValue(this, ['spaiv'], 'x'), tryGetValue(this, ['spdiv'], 'x'), tryGetValue(this, ['speiv'], 'x')]);
+//            pokemon.evs = new StatAttributes([tryGetValue(this, ['hpev']), tryGetValue(this, ['atkev']), tryGetValue(this, ['defev']), tryGetValue(this, ['spaev']), tryGetValue(this, ['spdev']), tryGetValue(this, ['speev'])]);
             pokemon.moves = [
                 tryGetValue(this, ['move1']),
                 tryGetValue(this, ['move2']),
@@ -443,67 +443,67 @@ function loadPokemon(pokemonData) {
                 }
             }
             // IVs
-            var ivs = [];
-            for (var i = 0; i < BATTLE_STATS.length; i++) {
-                var stat = BATTLE_STATS_ABBR[i];
-                var iv = pokemon.ivs[stat.toLowerCase()];
-                var legend = '';
+//            var ivs = [];
+ //           for (var i = 0; i < BATTLE_STATS.length; i++) {
+//                var stat = BATTLE_STATS_ABBR[i];
+//                var iv = pokemon.ivs[stat.toLowerCase()];
+ //               var legend = '';
                 // Format hyper trained, even, or odd IVs
-                if (isNaN(iv)) {
-                    if (iv.endsWith('*')) {
-                        legend = 'Hyper trained ' + stat + ' IV! This originally was ' + iv.slice(0, -1) + '.';
-                        iv = 'HT';
-                    } else {
-                        switch (iv.toLowerCase()) {
-                            case '2x':
-                            case 'e':
-                            case 'even':
-                                legend = 'Even ' + stat + ' IV';
-                                break;
-                            case '2x+1':
-                            case 'o':
-                            case 'odd':
-                                legend = 'Odd ' + stat + ' IV';
-                                break;
-                            case 'vg':
-                            case 'very good':
-                                legend = 'Very Good (26-29) ' + stat + ' IV';
-                                break;
-                            case 'pg':
-                            case 'pretty good':
-                                legend = 'Pretty Good (16-25) ' + stat + ' IV';
-                                break;
-                            case 'd':
-                            case 'decent':
-                                legend = 'Decent (1-15) ' + stat + ' IV';
-                                break;
-                            case 'ht':
-                                legend = 'Hyper trained ' + stat + ' IV!';
-                                break;
-                        }
-                    }
-                }
-                if (!legend) legend = stat + ' IV';
-                iv = '<abbr class="' + stat.toLowerCase() + ' title="' + legend + '">' + iv + '</abbr>';
-                ivs.push(iv);
-                row += '<td class="' + stat.toLowerCase() + (evTotal > 0 ? ' rows2' : '') + '">' + iv;
+ //               if (isNaN(iv)) {
+ //                   if (iv.endsWith('*')) {
+  //                      legend = 'Hyper trained ' + stat + ' IV! This originally was ' + iv.slice(0, -1) + '.';
+ //                       iv = 'HT';
+ //                   } else {
+ //                       switch (iv.toLowerCase()) {
+//                            case '2x':
+ //                           case 'e':
+ //                           case 'even':
+   //                             legend = 'Even ' + stat + ' IV';
+ //                               break;
+     //                       case '2x+1':
+       //                     case 'o':
+         //                   case 'odd':
+           //                     legend = 'Odd ' + stat + ' IV';
+             //                   break;
+               //             case 'vg':
+                 //           case 'very good':
+                   //             legend = 'Very Good (26-29) ' + stat + ' IV';
+//                                break;
+  //                          case 'pg':
+    //                        case 'pretty good':
+      //                          legend = 'Pretty Good (16-25) ' + stat + ' IV';
+        //                        break;
+          //                  case 'd':
+            //                case 'decent':
+              //                  legend = 'Decent (1-15) ' + stat + ' IV';
+//                                break;
+  //                          case 'ht':
+    //                            legend = 'Hyper trained ' + stat + ' IV!';
+      //                          break;
+        //                }
+          //          }
+  //              }
+    //            if (!legend) legend = stat + ' IV';
+      //          iv = '<abbr class="' + stat.toLowerCase() + ' title="' + legend + '">' + iv + '</abbr>';
+        //        ivs.push(iv);
+          //      row += '<td class="' + stat.toLowerCase() + (evTotal > 0 ? ' rows2' : '') + '">' + iv;
                 // If Pokémon is EV trained, break line and display EVs
-                if (evTotal > 0) {
-                    row += '<br>';
-                    var ev = Number(pokemon.evs[stat.toLowerCase()]);
-                    if (ev > 0) {
-                        row += '<abbr title="' + stat + ' EV">' + ev + '</abbr>';
-                    } else {
-                        row += '-';
-                    }
-                }
-                row += '</abbr>';
-            }
-            ivs = ivs.join('/');
-            evs = evs.join(' / ');
-            if (evTotal === 0) evs = 'Not EV-trained';
-            row += '<td class="ivs hidden">' + ivs + '</td>';
-            row += '<td class="evs hidden">' + evs + '</td>';
+   //             if (evTotal > 0) {
+     //               row += '<br>';
+       //             var ev = Number(pokemon.evs[stat.toLowerCase()]);
+         //           if (ev > 0) {
+           //             row += '<abbr title="' + stat + ' EV">' + ev + '</abbr>';
+             //       } else {
+               //         row += '-';
+  //                  }
+    //            }
+      //          row += '</abbr>';
+        //    }
+//            ivs = ivs.join('/');
+  //          evs = evs.join(' / ');
+    //        if (evTotal === 0) evs = 'Not EV-trained';
+      //      row += '<td class="ivs hidden">' + ivs + '</td>';
+        //    row += '<td class="evs hidden">' + evs + '</td>';
             // Moves
             row += '<td class="moves' +  (pokemon.eggMoves.length > 0 || !isForUniquePokemon ? ' hidden' : '') + '">' + pokemon.moves.join(', ') + '</td>';      
             row += '<td class="egg-moves' +  (pokemon.eggMoves.length === 0 && isForUniquePokemon ? ' hidden' : '') + '">' + pokemon.eggMoves.join(', ') + '</td>'; 
@@ -577,10 +577,10 @@ function loadPokemon(pokemonData) {
                 }
                 line += '<span class="ability"> ' + ability + ' |</span>';
                 // IVs & EVs
-                var statAttributes = $this.find( '.ivs' ).text();
-                line += '<span class="ivs"> ' + statAttributes + ' |</span>';
-                statAttributes = $this.find( '.evs' ).text();
-                line += '<span class="evs"> ' + statAttributes + ' |</span>';
+   //             var statAttributes = $this.find( '.ivs' ).text();
+  //              line += '<span class="ivs"> ' + statAttributes + ' |</span>';
+  //              statAttributes = $this.find( '.evs' ).text();
+  //              line += '<span class="evs"> ' + statAttributes + ' |</span>';
                 // Egg Moves
                 line += '<span class="egg-moves"> ' + $this.find( '.egg-moves' ).text() + ' |</span>';
                 // Poké Balls
