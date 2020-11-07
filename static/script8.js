@@ -443,35 +443,35 @@ function loadPokemon(pokemonData) {
                 }
             }
             // IVs
-            var ivs = [];
-            for (var i = 0; i < BATTLE_STATS.length; i++) {
-                var stat = BATTLE_STATS_ABBR[i];
-                var iv = pokemon.ivs[stat.toLowerCase()];
-                var legend = '';
+           var ivs = [];
+           for (var i = 0; i < BATTLE_STATS.length; i++) {
+               var stat = BATTLE_STATS_ABBR[i];
+               var iv = pokemon.ivs[stat.toLowerCase()];
+              var legend = '';
                 // Format hyper trained, even, or odd IVs
-                if (isNaN(iv)) {
-                    if (iv.endsWith('*')) {
-                        legend = 'Hyper trained ' + stat + ' IV! This originally was ' + iv.slice(0, -1) + '.';
-                        iv = 'HT';
-                    } else {
-                        switch (iv.toLowerCase()) {
-                            case '2x':
-                            case 'e':
-                            case 'even':
-                                legend = 'Even ' + stat + ' IV';
-                                break;
-                            case '2x+1':
-                            case 'o':
-                            case 'odd':
-                                legend = 'Odd ' + stat + ' IV';
-                                break;
-                            case 'vg':
-                            case 'very good':
+              if (isNaN(iv)) {
+                   if (iv.endsWith('*')) {
+                      legend = 'Hyper trained ' + stat + ' IV! This originally was ' + iv.slice(0, -1) + '.';
+                       iv = 'HT';
+                 } else {
+                       switch (iv.toLowerCase()) {
+                           case '2x':
+                           case 'e':
+                           case 'even':
+                               legend = 'Even ' + stat + ' IV';
+                               break;
+                           case '2x+1':
+                         case 'o':
+                          case 'odd':
+                               legend = 'Odd ' + stat + ' IV';
+                               break;
+                           case 'vg':
+                           case 'very good':
                                 legend = 'Very Good (26-29) ' + stat + ' IV';
-                                break;
-                            case 'pg':
+                             break;
+                           case 'pg':
                             case 'pretty good':
-                                legend = 'Pretty Good (16-25) ' + stat + ' IV';
+                               legend = 'Pretty Good (16-25) ' + stat + ' IV';
                                 break;
                             case 'd':
                             case 'decent':
@@ -484,7 +484,7 @@ function loadPokemon(pokemonData) {
                     }
                 }
                 if (!legend) legend = stat + ' IV';
-                iv = '<abbr class="' + stat.toLowerCase() + ' title="' + legend + '">' + iv + '</abbr>';
+               iv = '<abbr class="' + stat.toLowerCase() + ' title="' + legend + '">' + iv + '</abbr>';
                 ivs.push(iv);
                 row += '<td class="' + stat.toLowerCase() + (evTotal > 0 ? ' rows2' : '') + '">' + iv;
                 // If Pokémon is EV trained, break line and display EVs
@@ -496,10 +496,10 @@ function loadPokemon(pokemonData) {
                     } else {
                         row += '-';
                     }
-                }
+               }
                 row += '</abbr>';
-            }
-            ivs = ivs.join('/');
+           }
+           ivs = ivs.join('/');
             evs = evs.join(' / ');
             if (evTotal === 0) evs = 'Not EV-trained';
             row += '<td class="ivs hidden">' + ivs + '</td>';
@@ -630,7 +630,7 @@ function loadPokemon(pokemonData) {
         if (isForUniquePokemon) $dropdown.append(createCheckbox('markdown', 'OT/TID', 'trainer', false));
         $dropdown.append(createCheckbox('markdown', 'Nature', 'nature', false));
         $dropdown.append(createCheckbox('markdown', 'Ability', 'ability', false));
-        $dropdown.append(createCheckbox('markdown', 'IVs', 'ivs', false));
+        if (isForUniquePokemon)$dropdown.append(createCheckbox('markdown', 'IVs', 'ivs', false));
         if (isForUniquePokemon) $dropdown.append(createCheckbox('markdown', 'EVs', 'evs', false));
         $dropdown.append(createCheckbox('markdown', 'Egg Moves', 'egg-moves', false));
         $dropdown.append(createCheckbox('markdown', 'Poké Ball(s)', 'poke-balls', false));
